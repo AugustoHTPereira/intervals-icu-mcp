@@ -1,0 +1,12 @@
+services:
+  intervals-mcp:
+    build: .
+    image: intervals-icu-mcp:latest
+    container_name: intervals-icu-mcp
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      INTERVALS_API_KEY: ${INTERVALS_API_KEY}
+      INTERVALS_DEFAULT_ATHLETE_ID: ${INTERVALS_DEFAULT_ATHLETE_ID:-0}
+      INTERVALS_BASE_URL: ${INTERVALS_BASE_URL:-https://intervals.icu}

@@ -30,3 +30,23 @@ Invoque o agente `intervals-icu-publisher` (Agent tool, subagent_type "intervals
 ## Passo 5 — Reportar ao atleta
 
 Repasse ao atleta o resumo devolvido pelo agente: quantos treinos foram criados, quais dias ficaram de fora e por quê, e o link/nome dos eventos se relevante. Não é necessário criar nenhum arquivo novo neste skill — a fonte de verdade continua sendo o `planning.md` em `./treinos`; o Intervals.ICU é só o espelho operacional dele.
+
+## Passo 6 — Notificar por WhatsApp (sempre que a publicação for bem-sucedida)
+
+Depois que o Passo 4 confirmar que os eventos foram criados (não execute este passo se a publicação falhou ou foi só uma simulação), gere os PDFs e mande a notificação:
+
+1. **Gerar os PDFs.** Rode para o `planning.md` publicado:
+   ```
+   python3 .claude/skills/publicar-treino-icu/scripts/md_to_pdf.py <caminho-do-planning.md> ./treinos/<mesmo-nome-base>.pdf
+   ```
+   E, se existir um `-analisys.md` correspondente ao período que originou essa decisão (o arquivo em `./treinos/*-analisys.md` cuja data final é o dia anterior ao início do planning, ou o mais recente disponível), gere o PDF dele também da mesma forma. Se não existir nenhum `-analisys.md` (ex.: publicação avulsa sem ciclo de análise), pule esse PDF sem erro.
+2. **Montar a mensagem de texto** (concisa, sem anexo — o CallMeBot gratuito só manda texto):
+   - Título bem curto, ex.: `Treino publicado: 13/09-26/09`.
+   - Lista das sessões de treino com dia, horário e duração, uma por linha, ex.: `Dom 13/09 07:00 - Pedal de retomada (2h)`. Pule os dias de descanso completo puro.
+   - Não inclua links nem tente anexar os PDFs — eles ficam salvos em `./treinos` para o atleta abrir/enviar manualmente se quiser.
+3. **Enviar** via:
+   ```
+   .claude/skills/publicar-treino-icu/scripts/send_whatsapp.sh "<mensagem>"
+   ```
+   Esse script lê `CALLMEBOT_PHONE` e `CALLMEBOT_API_KEY` do `.env` na raiz do projeto. Se `CALLMEBOT_API_KEY` estiver vazio, avise o atleta que falta configurar a API key do CallMeBot (ele precisa adicionar o contato do CallMeBot no WhatsApp e mandar a mensagem de ativação para gerar a key) e não tente enviar.
+4. Confirme ao atleta que a notificação foi enviada (ou explique o motivo se não foi).

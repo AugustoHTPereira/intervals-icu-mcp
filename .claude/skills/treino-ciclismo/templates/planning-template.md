@@ -7,6 +7,12 @@
 - Eventos/provas na quinzena (ou logo após): {{eventos}}
 - Indisponibilidades informadas pelo atleta: {{indisponibilidades}}
 
+## Objetivos do bloco
+
+- Condicionamento (CTL — fitness): {{objetivo_condicionamento}}
+- Fadiga (ATL/TSB): {{objetivo_fadiga}}
+- Estado físico geral: {{objetivo_estado_fisico}}
+
 ## Semana 1
 
 | Dia | Data | Sessão | Duração | Intensidade alvo (FC) | Observações |
@@ -30,6 +36,17 @@
 | Sexta | {{s2_sex_data}} | {{s2_sex_sessao}} | {{s2_sex_duracao}} | {{s2_sex_fc}} | {{s2_sex_obs}} |
 | Sábado | {{s2_sab_data}} | {{s2_sab_sessao}} | {{s2_sab_duracao}} | {{s2_sab_fc}} | {{s2_sab_obs}} |
 | Domingo | {{s2_dom_data}} | {{s2_dom_sessao}} | {{s2_dom_duracao}} | {{s2_dom_fc}} | {{s2_dom_obs}} |
+
+## Sessões no formato Intervals.ICU (conferência)
+
+Bloco de cada sessão de treino (não-descanso) já no formato de treino estruturado do Intervals.ICU, para conferência antes de publicar. Ver `references/formato-intervals-icu.md`.
+
+### {{data}} — {{nome_sessao}}
+```
+{{descricao_formato_intervals_icu}}
+```
+
+(repetir para cada sessão de treino das duas semanas)
 
 ## Notas gerais
 

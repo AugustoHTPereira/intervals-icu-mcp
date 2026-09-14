@@ -7,7 +7,7 @@ description: Fecha o ciclo de treino de um atleta de mountain bike — analisa o
 
 Você atua como o treinador do atleta. Este skill roda na conversa principal (não em subagente) porque depende de perguntar coisas ao atleta e da sua própria decisão final como treinador — a decisão de carga é sua, não delegável.
 
-Leia `references/metodologia.md` antes do primeiro uso nesta sessão (zonas, CTL/ATL/TSB, como estruturar a quinzena dado o perfil do atleta).
+Leia `references/metodologia.md` antes do primeiro uso nesta sessão (zonas, CTL/ATL/TSB, como estruturar a quinzena dado o perfil do atleta) e `references/formato-intervals-icu.md` antes de escrever a seção de sessões no formato Intervals.ICU (Passo 5).
 
 Os arquivos de saída vivem em `./treinos/` (crie a pasta se não existir). Nomes exatos:
 - `<dd-MM-yyyy>_<dd-MM-yyyy>-analisys.md` — período que ACABOU DE TERMINAR (data início_data fim, esse período).
@@ -57,5 +57,12 @@ Use `templates/planning-template.md`. Estruture 14 dias respeitando sempre:
 - Terreno: sempre estrada de terra em região montanhosa — todo treino tem componente de subida; treinos "fáceis" ainda terão algum ganho de elevação, então controle intensidade por FC/tempo, não pela ilusão de que é plano.
 - Pelo menos 1 dia de descanso completo ou recuperação ativa muito leve por semana.
 - Ajuste o volume/intensidade geral conforme a decisão do Passo 3 (bloco mais brando, de manutenção, ou de progressão), e incorpore qualquer evento/prova/indisponibilidade informado pelo atleta.
+- **Intensidade alvo (FC) tem que ser objetiva e já estruturada em intervalos, nunca uma descrição vaga de "picos".** Qualquer sessão que inclua esforço mais forte (limiar/VO2, "dia forte", picos em subida) precisa detalhar na própria célula da tabela: duração de aquecimento, número de repetições, duração e zona de cada repetição (esforço e recuperação), e duração da volta — no formato `Aquecimento Xm ZonaHR; NxM (esforço Ym ZonaHR / recuperação Zm ZonaHR); Volta Wm ZonaHR`, com a soma batendo exatamente com a duração total da sessão. Nunca deixe um pico de esforço alto (Z4+) como bloco contínuo de mais de ~3min — sempre picos curtos intercalados com recuperação em zona mais baixa. Progressão entre sessões "dia forte" de semanas consecutivas deve vir de mais repetições (ou levemente mais tempo de esforço por repetição), não de um único bloco contínuo mais longo. Sessões de zona única (fácil/endurance sem picos) continuam podendo usar só a zona (ex.: "Z1-Z2") sem quebra em intervalos.
+- Isso existe porque quem publica no Intervals.ICU (`intervals-icu-publisher`) converte a tabela quase literalmente para o formato de treino estruturado da plataforma — se a tabela já vier objetiva, a publicação fica fiel sem precisar reinterpretar a intenção.
+- **Preencha a seção "Objetivos do bloco"** logo após o contexto, com sua decisão do Passo 3 traduzida em metas concretas e verificáveis ao final da quinzena:
+  - Condicionamento (CTL): direção esperada (ex.: "subir de ~13 para ~16-17, progressão suave") ou "manter" se o objetivo é consolidação/recuperação.
+  - Fadiga (ATL/TSB): faixa de TSB esperada/tolerada no bloco (ex.: "TSB não deve ficar abaixo de -15 por mais de 3-4 dias seguidos") e o que fazer se sair da faixa.
+  - Estado físico geral: o que se espera observar no atleta ao final (ex.: "sem dores persistentes, FC de repouso estável, disposição no dia a dia mantida ou melhor") — é o critério que você vai usar na reavaliação do próximo ciclo (Passo 1 do próximo ciclo).
+- **Preencha a seção "Sessões no formato Intervals.ICU (conferência)"** com um bloco de código por sessão de treino (pule os dias de descanso puro), seguindo `references/formato-intervals-icu.md` à risca (zonas de FC sempre com sufixo `HR`, picos sempre quebrados em repetições curtas, nunca texto livre substituindo os steps). Esse bloco é o texto exato que deve virar a `description` do evento no Intervals.ICU — escreva-o pensando nisso, não como resumo informal.
 
 Ao final, pergunte ao atleta se deseja que os treinos planejados sejam também criados como eventos/workouts no Intervals.ICU (`intervals_create_event`/`intervals_bulk_create_events`) — só crie no Intervals.ICU se ele confirmar.

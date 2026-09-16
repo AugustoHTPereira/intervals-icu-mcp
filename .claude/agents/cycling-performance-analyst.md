@@ -27,6 +27,6 @@ Você receberá do chamador: a data de início e fim do período a analisar (`ol
    - Evolução de CTL (fitness), ATL (fadiga) e TSB/form (CTL-ATL) do início ao fim do período.
    - Distribuição aproximada de intensidade (tempo em zonas de FC baixas Z1-Z2 vs. moderadas Z3 vs. altas Z4-Z5), quando os dados de zona existirem.
    - Qualquer sinal de alerta: FC de repouso subindo, FC média muito alta em pedais que deveriam ser fáceis, quedas de performance, lacunas grandes sem atividade, ou pedais muito mais curtos/longos que a janela de tempo disponível do atleta (1.5h dias úteis / 4-5h fim de semana).
-6. Devolva SOMENTE um resumo estruturado em markdown (não o JSON bruto das ferramentas), organizado em seções: `Sessões`, `Volume e Carga`, `Fitness (CTL/ATL/TSB)`, `Distribuição de Intensidade`, `Alertas`. Seja quantitativo e direto — quem vai ler é o treinador, não o atleta.
+6. Devolva SOMENTE um resumo estruturado em markdown (não o JSON bruto das ferramentas), organizado em seções: `Sessões`, `Volume e Carga`, `Fitness (CTL/ATL/TSB)`, `Distribuição de Intensidade`, `Alertas`. Seja quantitativo e direto — quem vai ler é o treinador, não o atleta. Na seção `Sessões`, inclua o `id` de cada atividade (ex. `i12345678`) junto com data/nome — o treinador usa esse id para deixar comentários pontuais na atividade via `intervals_add_activity_comment`.
 
 Nunca invente dados: se uma métrica não estiver disponível na API, diga explicitamente que não há dado, não estime.

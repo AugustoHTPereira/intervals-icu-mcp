@@ -3,7 +3,8 @@
 Servidor [MCP](https://modelcontextprotocol.io) para a plataforma [Intervals.ICU](https://intervals.icu),
 construído em **.NET 10** e distribuído via **Docker**. Expõe dados de um atleta (perfil, wellness,
 atividades, curvas de potência/pace/FC, zonas de treino) e permite escrever no calendário (eventos e
-treinos planejados) para que um agente de IA possa atuar como treinador, sugerindo e agendando treinos.
+treinos planejados) e deixar comentários em atividades para que um agente de IA possa atuar como
+treinador, sugerindo, agendando e dando feedback breve sobre os treinos.
 
 - Documentação da API: https://intervals.icu/api-docs.html
 - Spec completa: [`openapi-spec.json`](./openapi-spec.json) (118 endpoints)
@@ -26,7 +27,7 @@ documentadas para as áreas centrais de um agente treinador:
 |---|---|
 | Atleta | `intervals_get_athlete`, `intervals_update_athlete`, `intervals_get_athlete_profile`, `intervals_get_athlete_summary`, `intervals_list_athletes` |
 | Saúde/Wellness | `intervals_get_wellness`, `intervals_list_wellness`, `intervals_upsert_wellness`, `intervals_bulk_upsert_wellness` |
-| Atividades | `intervals_list_activities`, `intervals_search_activities`, `intervals_get_activity`, `intervals_get_activity_intervals`, `intervals_get_activity_best_efforts`, `intervals_get_activity_streams`, `intervals_get_power_curve`, `intervals_get_pace_curve`, `intervals_get_hr_curve` |
+| Atividades | `intervals_list_activities`, `intervals_search_activities`, `intervals_get_activity`, `intervals_get_activity_intervals`, `intervals_get_activity_best_efforts`, `intervals_get_activity_streams`, `intervals_get_power_curve`, `intervals_get_pace_curve`, `intervals_get_hr_curve`, `intervals_list_activity_comments`, `intervals_add_activity_comment` |
 | Calendário/Eventos | `intervals_list_events`, `intervals_get_event`, `intervals_create_event`, `intervals_update_event`, `intervals_delete_event`, `intervals_bulk_create_events` |
 | Biblioteca de treinos | `intervals_list_workouts`, `intervals_get_workout`, `intervals_create_workout`, `intervals_update_workout`, `intervals_delete_workout`, `intervals_list_workout_folders` |
 | Zonas/FTP | `intervals_list_sport_settings`, `intervals_get_sport_settings`, `intervals_update_sport_settings` |

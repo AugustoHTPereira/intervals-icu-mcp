@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Text.Json;
 using IntervalsIcu.Client;
 using ModelContextProtocol.Server;
 
@@ -128,6 +129,34 @@ public static class ActivityTools
     {
         var query = JsonHelpers.Query(("oldest", oldest), ("newest", newest));
         var result = await client.GetAsync($"/api/v1/athlete/{AthleteTools.Id(client, athleteId)}/hr-curves", query, ct);
+        return result.ToPrettyJson();
+    }
+
+    [McpServerTool(Name = "intervals_list_activity_comments"), Description(
+        "List existing comments (coach and athlete) on an activity's comment thread — check this " +
+        "before adding a new coach note, so you don't repeat feedback already given.")]
+    public static async Task<string> ListActivityComments(
+        IntervalsClient client,
+        [Description("Activity id, e.g. 'i12345678'.")] string activityId,
+        CancellationToken ct = default)
+    {
+        var result = await client.GetAsync($"/api/v1/activity/{activityId}/messages", ct: ct);
+        return result.ToPrettyJson();
+    }
+
+    [McpServerTool(Name = "intervals_add_activity_comment"), Description(
+        "Add a coach note/comment to a completed activity — it appears in that activity's comment " +
+        "thread on Intervals.ICU, visible to the athlete. Use for brief, specific coaching feedback " +
+        "tied to that session (e.g. cadence, pacing, breathing, a specific interval that stood out). " +
+        "Keep it to one short paragraph, about 255 characters — this is a quick tip, not a report.")]
+    public static async Task<string> AddActivityComment(
+        IntervalsClient client,
+        [Description("Activity id, e.g. 'i12345678'.")] string activityId,
+        [Description("Comment text. Keep it brief — around 255 characters, one short paragraph.")] string content,
+        CancellationToken ct = default)
+    {
+        var body = JsonSerializer.SerializeToElement(new { content });
+        var result = await client.PostAsync($"/api/v1/activity/{activityId}/messages", body, ct: ct);
         return result.ToPrettyJson();
     }
 }

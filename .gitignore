@@ -6,3 +6,4 @@ obj/
 .env
 treinos/
 .DS_Store
+scripts/daily-coach-notes/logs/

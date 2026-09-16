@@ -49,6 +49,15 @@ Cruze o resumo objetivo (Passo 1) com a percepção do atleta (Passo 2):
 
 Use `templates/analysis-template.md`. Preencha com o resumo objetivo do Passo 1, sua avaliação de cumprimento, sua decisão de carga (Passo 3) com a justificativa, e termine com a seção obrigatória de percepção do atleta (verbatim/resumida do Passo 2) — essa seção fica sempre no final do arquivo.
 
+## Passo 4.5 — Notas do treinador (opcional, mas prefira usar quando fizer diferença)
+
+Além do arquivo de análise, você pode deixar notas curtas diretamente no Intervals.ICU, no lugar onde o atleta realmente vai ver — a atividade ou o calendário da semana. Regra de ouro: **cada nota é um parágrafo só, ~255 caracteres, uma dica específica e acionável** (não um resumo do treino, não repita números que já estão na tela do atleta).
+
+- **Nota em uma atividade específica** (`intervals_add_activity_comment`, passando o `id` da atividade retornado pelo `cycling-performance-analyst`): use quando há algo pontual e específico daquela sessão que vale corrigir ou reforçar — cadência baixa numa subida, FC subindo mais que o esperado num trecho fácil, respiração/pacing num pico, elogio a uma execução bem feita. Antes de comentar, rode `intervals_list_activity_comments` para não repetir uma nota já deixada ali.
+- **Nota na semana** (evento de calendário com `category: "NOTE"`, criado/atualizado via `intervals_create_event`/`intervals_update_event`, com `start_date_local` na segunda-feira da semana em questão): use para uma dica que vale para o bloco inteiro — ex. "essa semana o foco é manter frequência, não intensidade" ou "cuidado com a fadiga acumulada, se sentir muito pesado corte o pedal de sábado". Uma nota por semana da quinzena, só quando houver algo relevante a dizer (não crie nota vazia tipo "bom treino").
+- Nem toda atividade ou semana precisa de nota — só adicione quando tiver uma observação concreta baseada nos dados (Passo 1) ou na percepção do atleta (Passo 2). Notas genéricas de torcida não agregam.
+- Registre no `<periodo-encerrado>-analisys.md` (seção de decisão do treinador) quais notas você deixou e por quê, para dar contexto no próximo ciclo.
+
 ## Passo 5 — Escrever `<proxima-quinzena>-planning.md`
 
 Use `templates/planning-template.md`. Estruture 14 dias respeitando sempre:

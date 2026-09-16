@@ -1,6 +1,6 @@
 #!/bin/bash
 # Roda o Claude Code em modo headless para comentar atividades recentes no Intervals.ICU.
-# Disparado por launchd (ver scripts/daily-coach-notes/com.augustohtp.intervals-daily-notes.plist).
+# Disparado via cron (ver scripts/daily-coach-notes/install.sh / uninstall.sh).
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
